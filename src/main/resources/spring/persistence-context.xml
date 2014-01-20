@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="
+    http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+    http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.0.xsd
+    http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.0.xsd
+    http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd
+    http://www.springframework.org/schema/util
+        http://www.springframework.org/schema/util/spring-util-3.0.xsd">
+
+	<context:component-scan base-package="com.coolSchool.application.persistence" />
+
+	<context:annotation-config />
+
+	<!-- Name of the DataSource to use. This can be overridden in sub-projects. -->
+	<bean id="dataSource" class="oracle.jdbc.pool.OracleDataSource">
+		<property name="dataSourceName" value="ds" />
+		<property name="URL" value="jdbc:oracle:thin:@localhost:1521:XE" />
+		<property name="user" value="system" />
+		<property name="password" value="oracle" />
+	</bean>
+
+	<!-- Consifure the sessionFactory bean by giving the dataSource, entity 
+		mappings and hibernate configuration -->
+	<bean id="sessionFactory"
+		class="org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean"
+		lazy-init="true">
+		<property name="dataSource">
+			<ref bean="dataSource" />
+		</property>
+		<property name="packagesToScan">
+			<list>
+				<value>com.coolSchool.application.persistence.domain</value>
+			</list>
+		</property>
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.hbm2ddl.auto">create</prop>
+				<prop key="hibernate.show_sql">true</prop>
+				<prop key="hibernate.dialect">org.hibernate.dialect.Oracle10gDialect</prop>
+				<prop key="current_session_context_class">org.hibernate.context.ThreadLocalSessionContext
+				</prop>
+			</props>
+		</property>
+	</bean>
+
+	<!-- Hibernate Transaction Manager, which takes in the sessionFactory -->
+	<bean id="txManager"
+		class="org.springframework.orm.hibernate3.HibernateTransactionManager">
+		<property name="sessionFactory">
+			<ref local="sessionFactory" />
+		</property>
+	</bean>
+
+	<tx:annotation-driven transaction-manager="txManager" />
+</beans>
