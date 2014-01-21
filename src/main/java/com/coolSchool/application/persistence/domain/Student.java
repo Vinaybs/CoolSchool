@@ -2,6 +2,9 @@ package com.coolSchool.application.persistence.domain;
 
 import java.io.Serializable;
 
+import javax.persistence.AttributeOverride;
+import javax.persistence.AttributeOverrides;
+import javax.persistence.Column;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -18,22 +21,67 @@ public class Student implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
+	@AttributeOverrides({
+			@AttributeOverride(name = "firstName", column = @Column(name = "STUDENT_FIRST_NAME")),
+			@AttributeOverride(name = "surName", column = @Column(name = "STUDENT_SUR_NAME")),
+			@AttributeOverride(name = "lastName", column = @Column(name = "STUDENT_LAST_NAME")),
+			@AttributeOverride(name = "displayName", column = @Column(name = "STUDENT_DISPLAY_NAME")) })
 	@Embedded
 	private Name name;
+
 	private Integer age;
+
 	@Embedded
 	private Address address;
-	@Embedded
-	private Contact contact;
+
+	@Column(name = "MOBILE_NUMBER")
+	private String mobileNumber;
+
+	@Column(name = "EMAIL_ADDRESS")
+	private String emailAddress;
+
 	private String studyingClass;
+
 	private String personalBlog;
+
 	private String personalWebsite;
+	@AttributeOverrides({
+			@AttributeOverride(name = "firstName", column = @Column(name = "FATHER_FIRST_NAME")),
+			@AttributeOverride(name = "surName", column = @Column(name = "FATHER_SUR_NAME")),
+			@AttributeOverride(name = "lastName", column = @Column(name = "FATHER_LAST_NAME")),
+			@AttributeOverride(name = "displayName", column = @Column(name = "FATHER_DISPLAY_NAME")) })
 	@Embedded
 	private Name father;
+	@AttributeOverrides({
+			@AttributeOverride(name = "firstName", column = @Column(name = "MOTHER_FIRST_NAME")),
+			@AttributeOverride(name = "surName", column = @Column(name = "MOTHER_SUR_NAME")),
+			@AttributeOverride(name = "lastName", column = @Column(name = "MOTHER_LAST_NAME")),
+			@AttributeOverride(name = "displayName", column = @Column(name = "MOTHER_DISPLAY_NAME")) })
 	@Embedded
 	private Name mother;
+	@AttributeOverrides({
+			@AttributeOverride(name = "firstName", column = @Column(name = "GUARDIAN_FIRST_NAME")),
+			@AttributeOverride(name = "surName", column = @Column(name = "GUARDIAN_SUR_NAME")),
+			@AttributeOverride(name = "lastName", column = @Column(name = "GUARDIAN_LAST_NAME")),
+			@AttributeOverride(name = "displayName", column = @Column(name = "GUARDIAN_DISPLAY_NAME")) })
 	@Embedded
 	private Name guardian;
+
+	public String getMobileNumber() {
+		return mobileNumber;
+	}
+
+	public void setMobileNumber(String mobileNumber) {
+		this.mobileNumber = mobileNumber;
+	}
+
+	public String getEmailAddress() {
+		return emailAddress;
+	}
+
+	public void setEmailAddress(String emailAddress) {
+		this.emailAddress = emailAddress;
+	}
 
 	public Long getId() {
 		return id;
@@ -89,14 +137,6 @@ public class Student implements Serializable {
 
 	public void setAddress(Address address) {
 		this.address = address;
-	}
-
-	public Contact getContact() {
-		return contact;
-	}
-
-	public void setContact(Contact contact) {
-		this.contact = contact;
 	}
 
 	public String getStudyingClass() {

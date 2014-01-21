@@ -6,20 +6,60 @@
 	<!-- Mapping domain objects to value objects. -->
 
 	<mapping map-null="true">
-		<class-a>com.onlineForum.application.presentation.value.UserVO</class-a>
-		<class-b>com.onlineForum.application.persistence.domain.User</class-b>
+		<class-a>com.coolSchool.application.presentation.value.UserVO
+		</class-a>
+		<class-b>com.coolSchool.application.persistence.domain.User</class-b>
 
 		<field>
 			<a>userAddresses</a>
 			<b>userAddresses</b>
-			<a-hint>com.onlineForum.application.presentation.value.AddressVO</a-hint>
-			<b-hint>com.onlineForum.application.persistence.domain.Address</b-hint>
+			<a-hint>com.coolSchool.application.presentation.value.AddressVO</a-hint>
+			<b-hint>com.coolSchool.application.persistence.domain.Address</b-hint>
 		</field>
 		<field>
 			<a>userContacts</a>
 			<b>userContacts</b>
-			<a-hint>com.onlineForum.application.presentation.value.ContactVO</a-hint>
-			<b-hint>com.onlineForum.application.persistence.domain.Contact</b-hint>
+			<a-hint>com.coolSchool.application.presentation.value.ContactVO</a-hint>
+			<b-hint>com.coolSchool.application.persistence.domain.Contact</b-hint>
+		</field>
+	</mapping>
+
+	<!-- Mapping StudentVO to Student domain object -->
+
+	<mapping map-null="true">
+		<class-a>com.coolSchool.application.presentation.value.StudentVO
+		</class-a>
+		<class-b>com.coolSchool.application.persistence.domain.Student</class-b>
+
+		<field>
+			<a>address</a>
+			<b>address</b>
+			<a-hint>com.coolSchool.application.presentation.value.AddressVO</a-hint>
+			<b-hint>com.coolSchool.application.persistence.domain.Address</b-hint>
+		</field>
+		<field>
+			<a>name</a>
+			<b>name</b>
+			<a-hint>com.coolSchool.application.presentation.value.NameVO</a-hint>
+			<b-hint>com.coolSchool.application.persistence.domain.Name</b-hint>
+		</field>
+		<field>
+			<a>father</a>
+			<b>father</b>
+			<a-hint>com.coolSchool.application.presentation.value.NameVO</a-hint>
+			<b-hint>com.coolSchool.application.persistence.domain.Name</b-hint>
+		</field>
+		<field>
+			<a>mother</a>
+			<b>mother</b>
+			<a-hint>com.coolSchool.application.presentation.value.NameVO</a-hint>
+			<b-hint>com.coolSchool.application.persistence.domain.Name</b-hint>
+		</field>
+		<field>
+			<a>guardian</a>
+			<b>guardian</b>
+			<a-hint>com.coolSchool.application.presentation.value.NameVO</a-hint>
+			<b-hint>com.coolSchool.application.persistence.domain.Name</b-hint>
 		</field>
 	</mapping>
 

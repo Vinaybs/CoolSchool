@@ -15,7 +15,7 @@
 
 	<context:component-scan base-package="com.coolSchool.application.business" />
 	<context:annotation-config />
-	
+
 	<import resource="classpath:/spring/persistence-context.xml" />
 	<bean id="log4jInitialization"
 		class="org.springframework.beans.factory.config.MethodInvokingFactoryBean">
@@ -27,11 +27,14 @@
 			</list>
 		</property>
 	</bean>
+
+	<!-- Dozer bean configuration -->
 	<bean id="org.dozer.Mapper" class="org.dozer.DozerBeanMapper">
 		<property name="mappingFiles">
 			<list>
-				<value>classpath:dozer/dozerBeanMapping.xml</value>
+				<value>dozer/voToDomain-dozer-mappings.xml</value>
 			</list>
 		</property>
 	</bean>
+
 </beans>

@@ -63,7 +63,7 @@ public class UserDaoTest {
 		userDao.save(null);
 	}
 
-	@Test
+	//@Test
 	public void test_findUserById() throws CoolSchoolDataAccessException {
 
 		User user = userDao.findUserById(1l);
